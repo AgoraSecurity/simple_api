@@ -5,6 +5,7 @@ ruby '3.1.0'
 # Core dependencies
 gem 'sinatra'
 gem 'slack-notifier'
+gem 'puma'
 
 # Logging
 gem 'logger'
