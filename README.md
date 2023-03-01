@@ -51,7 +51,7 @@ Before running this application, make sure you have the following installed:
 1. Start the application:
 
     ```bash
-    ruby app.rb
+    puma -b 'ssl://0.0.0.0:8443?key=/path/to/server_key&cert=/path/to/server_cert' -e production /full/path/to/app
     ```
 
 The application will start at http://localhost:4567 by default.
@@ -80,20 +80,7 @@ Send a POST request to the `/payload` endpoint with a JSON payload that looks li
 Example cURL request:
 
 ```bash
-curl -X POST https://example.com/payload \
--H 'Content-Type: application/json' \
--d '{
-  "RecordType": "Bounce",
-  "Type": "SpamNotification",
-  "TypeCode": 512,
-  "Name": "Spam notification",
-  "Tag": "",
-  "MessageStream": "outbound",
-  "Description": "The message was delivered, but was either blocked by the user, or classified as spam, bulk mail, or had rejected content.",
-  "Email": "zaphod@example.com",
-  "From": "notifications@honeybadger.io",
-  "BouncedAt": "2023-02-27T21:41:30Z",
-}'
+curl -X POST -H "Content-Type: application/json" --data @payload.json https://localhost:8443/payload --insecure
 ```
 
 ## Production-Ready 🚀

@@ -17,3 +17,7 @@
 # Ignore any temporary files.
 *.swp
 .DS_Store
+
+
+# SSL files
+ssl/
