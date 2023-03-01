@@ -1,0 +1,19 @@
+# Ignore bundler config.
+/.bundle
+
+# Ignore the vendor directory.
+/vendor
+
+# Ignore any log files.
+/log/*.log
+*.log
+
+# Ignore dotenv files.
+.env*
+
+# Ignore any local configuration files.
+/config/*.yml
+
+# Ignore any temporary files.
+*.swp
+.DS_Store
