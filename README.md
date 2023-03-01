@@ -109,3 +109,50 @@ To make this application production-ready, consider implementing the following:
 **Deployment**: Use a reliable deployment process to deploy your application to production, such as using a containerization platform like Docker or a cloud-based service like AWS Elastic Beanstalk. This will help ensure that your application is deployed consistently and reliably across different environments.
 
 **Scalability**: Design your application to be scalable, so that it can handle increasing traffic and load over time. This can include using load balancers, caching, and other performance optimizations to ensure that your application can handle high levels of traffic without slowing down or crashing.
+
+## Local development 🚀
+
+### 📝 Generating SSL/TLS Certificates
+
+To set up SSL/TLS for secure communication, you need to generate a SSL certificate and a key. Here are the steps to generate these files:
+
+1. Create a directory to store the certificate and key files:
+
+    ```bash
+    mkdir ssl
+    cd ssl
+    ```
+
+1. Generate a private key for your SSL/TLS certificate:
+
+    ```bash
+    openssl genrsa -out server.key 2048
+    ```
+
+1. Generate a Certificate Signing Request (CSR):
+
+    ```bash
+    openssl req -new -key server.key -out server.csr
+    ```
+
+1. Generate a self-signed SSL/TLS certificate:
+
+    ```bash
+    openssl x509 -req -days 365 -in server.csr -signkey server.key -out server.crt
+    ```
+
+1. Verify that the certificate and key files have been generated:
+
+    ```bash
+    ls -l
+    ```
+
+You should see the following files:
+
+```bash
+server.crt
+server.csr
+server.key
+```
+
+You can now use the server.crt and server.key files in your Sinatra application to enable SSL/TLS. Remember to update the :ssl_certificate and :ssl_key settings in your config.ru file with the correct paths to these files.
